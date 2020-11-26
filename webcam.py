@@ -3,32 +3,42 @@ import cv2
 
 cap = cv2.VideoCapture(0)
 
-maxheight = 480
+# Colors: BGR
+
 maxWidth = 640
+maxheight = 480
 
 while(True):
 	# Capture frame-by-frame
 	ret, frame = cap.read()
 
-	# draw triangle 1
-	vertices1 = np.array([[0, 0], [640, 0], [320, 240]], np.int32)
-	pts1 = vertices1.reshape((-1, 1, 2))
-	cv2.polylines(frame, [pts1], isClosed=True, color=(50,205,50), thickness=5)
+	# flip
+	frame = cv2.flip(frame, 180) 
 
-	# draw triangle 2
-	vertices2 = np.array([[0, 0], [0, 480], [320, 240]], np.int32)
-	pts2 = vertices2.reshape((-1, 1, 2))
-	cv2.polylines(frame, [pts2], isClosed=True, color=(180,105,255), thickness=5)
+	# rectangle LEFT
+	rec1_pt1 = (20, 166)
+	rec1_pt2 = (206, 312)
+	rec1 = cv2.rectangle(frame, rec1_pt1, rec1_pt2, (180,105,255), 3)
 
-	# draw triangle 3
-	vertices3 = np.array([[640, 0], [640, 480], [320, 240]], np.int32)
-	pts3 = vertices3.reshape((-1, 1, 2))
-	cv2.polylines(frame, [pts3], isClosed=True, color=(0, 0, 255), thickness=5)
+	# rectangle RIGHT
+	rec2_pt1 = (432, 166)
+	rec2_pt2 = (622, 312)
+	rec2 = cv2.rectangle(frame, rec2_pt1, rec2_pt2, (0,0,250), 3)
 
-	# draw triangle 4
-	vertices4 = np.array([[0, 480], [640, 480], [320, 240]], np.int32)
-	pts4 = vertices4.reshape((-1, 1, 2))
-	cv2.polylines(frame, [pts4], isClosed=True, color=(255,0,0), thickness=5)
+	# rectangle UP
+	rec3_pt1 = (226, 10)
+	rec3_pt2 = (412, 156)
+	rec3 = cv2.rectangle(frame, rec3_pt1, rec3_pt2, (0,128,0), 3)
+
+	# rectangle DOWN
+	rec4_pt1 = (226, 324)
+	rec4_pt2 = (412, 470)
+	rec4 = cv2.rectangle(frame, rec4_pt1, rec4_pt2, (255,144,30), 3)
+
+	# center circle
+	center = (320, 240)
+	radius = 60
+	circle = cv2.circle(frame, center, radius, (255,255,255), thickness=3, lineType=8, shift=0) 
 
 	# Display the resulting frame
 	cv2.imshow('frame', frame)
