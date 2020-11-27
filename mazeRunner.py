@@ -1,4 +1,11 @@
 import os
+import numpy as np
+import cv2
+# Colors format of opencv: BGR
+
+cap = cv2.VideoCapture(0)
+maxCamWidth = 640
+maxCamheight = 480
 
 def clearConsole():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -295,3 +302,7 @@ printGameField(gameField, actualPosition_X, actualPosition_Y)
 print("---------------------------------------")
 print("|                WINNER                |")
 print("---------------------------------------")
+
+# When everything done, release the capture
+cap.release()
+cv2.destroyAllWindows()
