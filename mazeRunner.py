@@ -15,7 +15,9 @@ def printGameField(gameField, posX, posY):
     print("---------------------------------------")
     print("|            Maze Runner!             |")
     print("---------------------------------------")
- 
+    # how to change pixel color: frame[5, 5] = (0, 0, 255)
+    (b, g, r) = frame[1, 1]
+    print("r: " , r , " b:" , b , " g:" , g) 
     for i in range(20):
         print()
         for j in range(20):
@@ -253,6 +255,58 @@ def possiblePlay(gameField, posX, posY, direction):
         
         return False;
 
+def randomplay():
+    # test function
+    randomNumberDirection = random.randint(1,4)
+    if randomNumberDirection==1:
+        return "A"
+    if randomNumberDirection==2:
+        return "S"
+    if randomNumberDirection==3:    
+        return "D"
+    if randomNumberDirection==4:
+        return "W"
+
+def checkPlay():
+    
+    correctPixelCountRight = 0;
+    for i in range(432, 622):
+        for j in range(166, 312):
+            (b, g, r) = frame[j, i]
+            if b<=50 and g<=50 and r>=110:
+                correctPixelCountRight = correctPixelCountRight + 1;
+
+    correctPixelCountLeft = 0;
+    for i in range(20, 206):
+        for j in range(166, 312):
+            (b, g, r) = frame[j, i]
+            if b<=50 and g<=50 and r>=110:
+                correctPixelCountLeft = correctPixelCountLeft + 1;
+
+    correctPixelCountDown = 0;
+    for i in range(226, 412):
+        for j in range(324, 470):
+            (b, g, r) = frame[j, i]
+            if b<=50 and g<=50 and r>=110:
+                correctPixelCountDown = correctPixelCountDown + 1;
+
+    correctPixelCountUp = 0;
+    for i in range(226, 412):
+        for j in range(10, 156):
+            (b, g, r) = frame[j, i]
+            if b<=50 and g<=50 and r>=110:
+                correctPixelCountUp = correctPixelCountUp +1;
+
+    maxPixels = max(correctPixelCountRight, correctPixelCountLeft, correctPixelCountDown, correctPixelCountUp);
+    if(maxPixels==correctPixelCountRight and maxPixels>5000):
+        return "D"
+    if(maxPixels==correctPixelCountLeft and maxPixels>5000):
+        return "A"
+    if(maxPixels==correctPixelCountDown and maxPixels>5000):
+        return "S"
+    if(maxPixels==correctPixelCountUp and maxPixels>5000):
+        return "W"
+
 
 clearConsole()
 
@@ -320,18 +374,7 @@ while(True):
     clearConsole()
     printGameField(gameField, actualPosition_X, actualPosition_Y)
             
-    #chooseDirection = input()
-
-    # Test Input Random
-    randomNumberDirection = random.randint(1,4)
-    if randomNumberDirection==1:
-        chooseDirection = "A"
-    if randomNumberDirection==2:
-        chooseDirection = "S"
-    if randomNumberDirection==3:
-        chooseDirection = "D"
-    if randomNumberDirection==4:
-        chooseDirection = "W"
+    chooseDirection = checkPlay()
 
     if chooseDirection=="A":
         if possiblePlay(gameField, actualPosition_X, actualPosition_Y, "A"): 
