@@ -269,42 +269,50 @@ def randomplay():
 
 def checkPlay():
     
+    # rec2_pt1 = (482, 206)
+    # rec2_pt2 = (572, 272)
     correctPixelCountRight = 0;
-    for i in range(432, 622):
-        for j in range(166, 312):
+    for i in range(482, 572):
+        for j in range(206, 272):
             (b, g, r) = frame[j, i]
             if b<=50 and g<=50 and r>=110:
                 correctPixelCountRight = correctPixelCountRight + 1;
 
+    # rec1_pt1 = (70, 206)
+    # rec1_pt2 = (156, 272)
     correctPixelCountLeft = 0;
-    for i in range(20, 206):
-        for j in range(166, 312):
+    for i in range(70, 156):
+        for j in range(206, 272):
             (b, g, r) = frame[j, i]
             if b<=50 and g<=50 and r>=110:
                 correctPixelCountLeft = correctPixelCountLeft + 1;
 
+    # rec4_pt1 = (276, 364)
+    # rec4_pt2 = (362, 430)           
     correctPixelCountDown = 0;
-    for i in range(226, 412):
-        for j in range(324, 470):
+    for i in range(276, 362):
+        for j in range(364, 430):
             (b, g, r) = frame[j, i]
             if b<=50 and g<=50 and r>=110:
                 correctPixelCountDown = correctPixelCountDown + 1;
 
+    # rec3_pt1 = (276, 50)
+    # rec3_pt2 = (362, 116)            
     correctPixelCountUp = 0;
-    for i in range(226, 412):
-        for j in range(10, 156):
+    for i in range(276, 362):
+        for j in range(50, 116):
             (b, g, r) = frame[j, i]
             if b<=50 and g<=50 and r>=110:
-                correctPixelCountUp = correctPixelCountUp +1;
+                correctPixelCountUp = correctPixelCountUp + 1;
 
     maxPixels = max(correctPixelCountRight, correctPixelCountLeft, correctPixelCountDown, correctPixelCountUp);
-    if(maxPixels==correctPixelCountRight and maxPixels>5000):
+    if(maxPixels==correctPixelCountRight and maxPixels>1000):
         return "D"
-    if(maxPixels==correctPixelCountLeft and maxPixels>5000):
+    if(maxPixels==correctPixelCountLeft and maxPixels>1000):
         return "A"
-    if(maxPixels==correctPixelCountDown and maxPixels>5000):
+    if(maxPixels==correctPixelCountDown and maxPixels>1000):
         return "S"
-    if(maxPixels==correctPixelCountUp and maxPixels>5000):
+    if(maxPixels==correctPixelCountUp and maxPixels>1000):
         return "W"
 
 
@@ -345,23 +353,23 @@ while(True):
     frame = cv2.flip(frame, 180) 
 
     # rectangle LEFT
-    rec1_pt1 = (20, 166)
-    rec1_pt2 = (206, 312)
+    rec1_pt1 = (70, 206)
+    rec1_pt2 = (156, 272)
     rec1 = cv2.rectangle(frame, rec1_pt1, rec1_pt2, (180,105,255), 3)
 
     # rectangle RIGHT
-    rec2_pt1 = (432, 166)
-    rec2_pt2 = (622, 312)
+    rec2_pt1 = (482, 206)
+    rec2_pt2 = (572, 272)
     rec2 = cv2.rectangle(frame, rec2_pt1, rec2_pt2, (0,0,250), 3)
 
     # rectangle UP
-    rec3_pt1 = (226, 10)
-    rec3_pt2 = (412, 156)
+    rec3_pt1 = (276, 50)
+    rec3_pt2 = (362, 116)
     rec3 = cv2.rectangle(frame, rec3_pt1, rec3_pt2, (0,128,0), 3)
 
     # rectangle DOWN
-    rec4_pt1 = (226, 324)
-    rec4_pt2 = (412, 470)
+    rec4_pt1 = (276, 364)
+    rec4_pt2 = (362, 430)
     rec4 = cv2.rectangle(frame, rec4_pt1, rec4_pt2, (255,144,30), 3)
 
     # center circle
