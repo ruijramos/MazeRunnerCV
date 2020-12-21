@@ -2,6 +2,7 @@ import os
 import numpy as np
 import cv2
 import random
+import vlc
 # Colors format of opencv: BGR
 
 cap = cv2.VideoCapture(0)
@@ -315,6 +316,8 @@ def checkPlay():
     if(maxPixels==correctPixelCountUp and maxPixels>1000):
         return "W"
 
+p = vlc.MediaPlayer("song.mp3")
+p.play()
 
 clearConsole()
 
@@ -414,6 +417,8 @@ printGameField(gameField, actualPosition_X, actualPosition_Y)
 print("---------------------------------------")
 print("|                WINNER                |")
 print("---------------------------------------")
+
+p.stop()
 
 # When everything done, release the capture
 cap.release()
