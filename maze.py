@@ -316,8 +316,12 @@ def checkPlay():
     if(maxPixels==correctPixelCountUp and maxPixels>1000):
         return "W"
 
+# theme song
 p = vlc.MediaPlayer("song.mp3")
 p.play()
+
+# resize terminal
+os.system('mode con: cols=42 lines=30')
 
 clearConsole()
 
@@ -333,7 +337,8 @@ print("---------------------------");
 print("| Welcome to Maze Runner! |");
 print("---------------------------");
 print();
-print("Please, select the Maze you want to play, from 1 to 3: ");
+print("Please, select the Maze you want to play.");
+print("Insert a number from 1 to 3: ")
 choosenMaze = input()
 
 # Building Maze
