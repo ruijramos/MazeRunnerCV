@@ -3,6 +3,7 @@ import numpy as np
 import cv2
 import random
 import vlc
+from termcolor import colored
 # Colors format of opencv: BGR
 
 cap = cv2.VideoCapture(0)
@@ -13,17 +14,17 @@ def clearConsole():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def printGameField(gameField, posX, posY):
-    print("---------------------------------------")
-    print("|            Maze Runner!             |")
-    print("---------------------------------------")
+    print(colored("---------------------------------------", 'green'))
+    print(colored("|            Maze Runner!             |", 'green'))
+    print(colored("---------------------------------------", 'green'))
     # how to change pixel color: frame[5, 5] = (0, 0, 255)
     (b, g, r) = frame[1, 1]
-    print("r: " , r , " b:" , b , " g:" , g) 
+    # print("r: " , r , " b:" , b , " g:" , g) 
     for i in range(20):
         print()
         for j in range(20):
             if(i==posX and j==posY):
-                print("& ", end='');
+                print(colored("& ", 'yellow'), end='');
                 continue
             print(gameField[i][j] + " ", end='');
 
@@ -333,9 +334,9 @@ finalPosition_Y = 19;
 
 # Game presentation and maze choice
 print();
-print("---------------------------");
-print("| Welcome to Maze Runner! |");
-print("---------------------------");
+print(colored("---------------------------", 'green'));
+print(colored("| Welcome to Maze Runner! |", 'green'));
+print(colored("---------------------------", 'green'));
 print();
 print("Please, select the Maze you want to play.");
 print("Insert a number from 1 to 3: ")
