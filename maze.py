@@ -3,6 +3,7 @@ import numpy as np
 import cv2
 import random
 import vlc
+import time
 from termcolor import colored
 # Colors format of opencv: BGR
 
@@ -418,14 +419,24 @@ while(True):
         if possiblePlay(gameField, actualPosition_X, actualPosition_Y, "W"):
             actualPosition_X = actualPosition_X - 1;
 
+
+p.stop()
+
+# win song
+w = vlc.MediaPlayer("victory.mp3")
+w.play()
+
 clearConsole()
 printGameField(gameField, actualPosition_X, actualPosition_Y)
 print("---------------------------------------")
 print("|                WINNER                |")
 print("---------------------------------------")
 
-p.stop()
+# wait for music to end
+time.sleep(6)
 
 # When everything done, release the capture
 cap.release()
 cv2.destroyAllWindows()
+
+w.stop()
