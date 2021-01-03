@@ -672,13 +672,13 @@ def checkPlay():
                 correctPixelCountUp = correctPixelCountUp + 1;
 
     maxPixels = max(correctPixelCountRight, correctPixelCountLeft, correctPixelCountDown, correctPixelCountUp);
-    if(maxPixels==correctPixelCountRight and maxPixels>1000):
+    if(maxPixels==correctPixelCountRight and maxPixels>800):
         return "D"
-    if(maxPixels==correctPixelCountLeft and maxPixels>1000):
+    if(maxPixels==correctPixelCountLeft and maxPixels>800):
         return "A"
-    if(maxPixels==correctPixelCountDown and maxPixels>1000):
+    if(maxPixels==correctPixelCountDown and maxPixels>800):
         return "S"
-    if(maxPixels==correctPixelCountUp and maxPixels>1000):
+    if(maxPixels==correctPixelCountUp and maxPixels>800):
         return "W"
 
 # theme song
